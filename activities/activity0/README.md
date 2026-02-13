@@ -1,5 +1,8 @@
 # CST-391 Activity 0: Tools Installation and Initial Applications
 
+## Introduction
+In this activity we are installing node and npm. Node is the JavaScript runtime that will be used to run the Hello World console application and TypeScript Express API. NPM is the node package manager used to install Express.js and the TypeScript dependencies.
+
 ## 1. node -v. 
 ![screenshot of node version, showing proper installation](screenshots/1_node_version.png)
 
@@ -34,3 +37,6 @@
 ![screenshot of commented app.ts file](screenshots/7_commented_ts_code.png)
 
 *Screenshot of commented app.ts file.*
+
+## Conclusion
+The activity steps are listed above showing the necessary screenshots and descriptions. We have the initial installation of Node and NPM, Hello world console application, Hello World in the browser with both Node and nodemon, as well as the Typescript Hello world in the browser and a detailed commented app.ts file for that same portion.
