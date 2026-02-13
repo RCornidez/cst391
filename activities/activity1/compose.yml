@@ -1,0 +1,19 @@
+services:
+  mysql:
+    image: mysql:8.0
+    container_name: mysql-db
+    restart: unless-stopped
+    env_file:
+      - ./MusicAPI/.env
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MY_SQL_DB_PASSWORD}
+      MYSQL_DATABASE: ${MY_SQL_DB_DATABASE}
+    command: --default-authentication-plugin=mysql_native_password
+    ports:
+      - "${MY_SQL_DB_PORT}:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+      - ./MusicDB.sql:/docker-entrypoint-initdb.d/01-MusicDB.sql
+
+volumes:
+  mysql_data:
