@@ -118,19 +118,19 @@ graph TD
 
 *The landing page has three sections: the call-to-action, demo screen recordings, and footer.*
 
-![Landing Page Wireframe Screenshot](/screenshots/landing.png)
+![Landing Page Wireframe Screenshot](screenshots/landing.png)
 
 ## Sign Up / Login
 
 *The Sign Up/ Login page has a dynamic form that will either have two fields for logging in or three fields for signing up.*
 
-![Signup/Login Page Wireframe Screenshot](/screenshots/signup-login.png)
+![Signup/Login Page Wireframe Screenshot](screenshots/signup-login.png)
 
 ## Dashboard
 
 *The Dashboard page has a navigation bar to the left and a content section on the right. The navigation links will be: Getting Started, Account, Billing, Keys. The content of these links are fairly minimal so they will navigate to sections using css ids instead of separate pages.*
 
-![Dashboard Page Wireframe Screenshot](/screenshots/dashboard.png)
+![Dashboard Page Wireframe Screenshot](screenshots/dashboard.png)
 
 # UML classes
 ```mermaid
