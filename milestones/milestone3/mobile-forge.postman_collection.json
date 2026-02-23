@@ -1,0 +1,663 @@
+{
+  "info": {
+    "_postman_id": "2127678f-ca93-44be-bb7b-ed27e90a7614",
+    "name": "mobile-forge",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "40780938"
+  },
+  "item": [
+    {
+      "name": "users",
+      "item": [
+        {
+          "name": "login",
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"email\": \"cornidez04@gmail.com\",\r\n    \"password\": \"supersecretpassword\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:5000/auth/login",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "5000",
+              "path": [
+                "auth",
+                "login"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "register",
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"email\": \"cornidez04@gmail.com\",\r\n    \"password\": \"supersecretpassword\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:5000/auth/register",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "5000",
+              "path": [
+                "auth",
+                "register"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "logout",
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "POST",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:5000/auth/logout",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "5000",
+              "path": [
+                "auth",
+                "logout"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "api-keys",
+      "item": [
+        {
+          "name": "create key",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"providerType\": \"GITHUB\",\r\n    \"keyName\": \"My GitHub Key\",\r\n    \"apiKey\": \"supersecretkey\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:5000/keys",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "5000",
+              "path": [
+                "keys"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "get all keys",
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:5000/keys",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "5000",
+              "path": [
+                "keys"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "update key",
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"keyName\": \"Updated Key Name\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:5000/keys/5ebcffa7-104c-11f1-a18e-ee385f104622",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "5000",
+              "path": [
+                "keys",
+                "5ebcffa7-104c-11f1-a18e-ee385f104622"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "delete key",
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:5000/keys/112ef27a-104c-11f1-a18e-ee385f104622",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "5000",
+              "path": [
+                "keys",
+                "112ef27a-104c-11f1-a18e-ee385f104622"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "billing-info",
+      "item": [
+        {
+          "name": "create billing info",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"nameOnCard\": \"Rodrigo Cornidez\",\r\n    \"cardNumber\": \"1111222233334444\",\r\n    \"expMonth\": 12,\r\n    \"expYear\": 2027,\r\n    \"cvv\": \"123\",\r\n    \"address\": \"123 Main St\",\r\n    \"state\": \"AZ\",\r\n    \"zip\": \"85001\",\r\n    \"cardType\": \"VISA\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:5000/billing",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "5000",
+              "path": [
+                "billing"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "get billing info",
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:5000/billing",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "5000",
+              "path": [
+                "billing"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "update billing info",
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"nameOnCard\": \"Rodrigo Cornidez\",\r\n    \"cardNumber\": \"5555666677778888\",\r\n    \"expMonth\": 12,\r\n    \"expYear\": 2027,\r\n    \"cvv\": \"123\",\r\n    \"address\": \"123 Main St\",\r\n    \"state\": \"AZ\",\r\n    \"zip\": \"85001\",\r\n    \"cardType\": \"MASTERCARD\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:5000/billing",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "5000",
+              "path": [
+                "billing"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "delete billing info",
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:5000/billing",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "5000",
+              "path": [
+                "billing"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "provisions",
+      "item": [
+        {
+          "name": "create provision",
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"serverName\": \"my-sample-server\",\r\n    \"serverSize\": \"s-1vcpu-1gb\",\r\n    \"githubRepoUrl\": \"https://github.com/sample/repo\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:5000/provisions",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "5000",
+              "path": [
+                "provisions"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "get all provisions",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"email\": \"cornidez04@gmail.com\",\r\n    \"password\": \"supersecretpassword\"\r\n}"
+            },
+            "url": {
+              "raw": "http://localhost:5000/provisions",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "5000",
+              "path": [
+                "provisions"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "get provision by id",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"email\": \"cornidez04@gmail.com\",\r\n    \"password\": \"supersecretpassword\"\r\n}"
+            },
+            "url": {
+              "raw": "http://localhost:5000/provisions/1a1696bf-1059-11f1-a18e-ee385f104622",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "5000",
+              "path": [
+                "provisions",
+                "1a1696bf-1059-11f1-a18e-ee385f104622"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "delete provision by id",
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:5000/provisions/1a1696bf-1059-11f1-a18e-ee385f104622",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "5000",
+              "path": [
+                "provisions",
+                "1a1696bf-1059-11f1-a18e-ee385f104622"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "subscriptions",
+      "item": [
+        {
+          "name": "get active plans",
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:5000/subscription-plans",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "5000",
+              "path": [
+                "subscription-plans"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "get active plan by id",
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:5000/subscription-plans/4b8637e4-1048-11f1-a18e-ee385f104622",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "5000",
+              "path": [
+                "subscription-plans",
+                "4b8637e4-1048-11f1-a18e-ee385f104622"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "get user's subscription",
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:5000/subscriptions/",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "5000",
+              "path": [
+                "subscriptions",
+                ""
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "subscribe user to a plan",
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{ \"planId\": \"4b8637e4-1048-11f1-a18e-ee385f104622\" }",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:5000/subscriptions",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "5000",
+              "path": [
+                "subscriptions"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "update users subscribed plan",
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"planId\": \"4b86662c-1048-11f1-a18e-ee385f104622\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:5000/subscriptions",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "5000",
+              "path": [
+                "subscriptions"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "unsubscribe from a plan",
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:5000/subscriptions",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "5000",
+              "path": [
+                "subscriptions"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "bills",
+      "item": [
+        {
+          "name": "get all bills",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:5000/bills",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "5000",
+              "path": [
+                "bills"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "get bill by id",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:5000/bills/ed2b55de-1064-11f1-a18e-ee385f104622",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "5000",
+              "path": [
+                "bills",
+                "ed2b55de-1064-11f1-a18e-ee385f104622"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    }
+  ],
+  "event": [
+    {
+      "listen": "prerequest",
+      "script": {
+        "type": "text/javascript",
+        "packages": {},
+        "requests": {},
+        "exec": [
+          ""
+        ]
+      }
+    },
+    {
+      "listen": "test",
+      "script": {
+        "type": "text/javascript",
+        "packages": {},
+        "requests": {},
+        "exec": [
+          ""
+        ]
+      }
+    }
+  ]
+}
