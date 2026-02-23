@@ -21,6 +21,19 @@ CREATE TABLE subscription_plans (
     CONSTRAINT pk_subscription_plans PRIMARY KEY (id)
 );
 
+CREATE TABLE api_keys (
+    id              CHAR(36)        NOT NULL    DEFAULT (UUID()),
+    user_id         CHAR(36)        NOT NULL,
+    provider_type   ENUM('GITHUB', 'DIGITAL_OCEAN') NOT NULL,
+    key_name        VARCHAR(255)    NOT NULL,
+    encrypted_key   VARCHAR(255)    NOT NULL,
+    created_at      DATETIME        NOT NULL    DEFAULT CURRENT_TIMESTAMP,
+    updated_at      DATETIME        NOT NULL    DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+
+    CONSTRAINT pk_api_keys PRIMARY KEY (id),
+    CONSTRAINT fk_api_keys_user FOREIGN KEY (user_id) REFERENCES users(id)
+);
+
 INSERT INTO subscription_plans (id, name, price, billing_period, features, is_active)
 VALUES
     (

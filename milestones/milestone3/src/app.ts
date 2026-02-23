@@ -1,4 +1,3 @@
-
 import express, { Request, Response } from "express";
 import dotenv from "dotenv";
 import cors from "cors";
@@ -6,9 +5,10 @@ import helmet from "helmet";
 import cookieParser from "cookie-parser";
 
 dotenv.config()
-import userRouter from "./features/users/users.routes";
 
-import { authenticate } from "./middleware/auth.middleware";
+import userRouter from "./features/users/users.routes";
+import apiKeysRouter from "./features/api-keys/api-keys.routes";
+
 import logger from "./middleware/logger.middleware";
 
 const app = express();
@@ -29,11 +29,7 @@ app.get('/', (req: Request, res: Response) => {
     res.send('MobileForge API');
 });
 
-// public routes
-app.use('/', [userRouter]);
-
-// private routes
-// app.use("/", authenticate, []);
+app.use('/', [userRouter, apiKeysRouter]);
 
 app.listen(port, () => {
     console.log(`Example app listening at http://localhost:${port}`)
