@@ -47,6 +47,23 @@ CREATE TABLE billing_info (
     CONSTRAINT fk_billing_info_user FOREIGN KEY (user_id) REFERENCES users(id)
 );
 
+CREATE TABLE provisions (
+    id                  CHAR(36)        NOT NULL    DEFAULT (UUID()),
+    user_id             CHAR(36)        NOT NULL,
+    server_name         VARCHAR(255)    NOT NULL,
+    server_size         VARCHAR(255)    NOT NULL,
+    status              ENUM('PENDING', 'PROVISIONING', 'ACTIVE', 'FAILED', 'DELETED') NOT NULL DEFAULT 'PENDING',
+    droplet_id          VARCHAR(255),
+    ip_address          VARCHAR(45),
+    github_repo_url     VARCHAR(255),
+    created_at          DATETIME        NOT NULL    DEFAULT CURRENT_TIMESTAMP,
+    provisioned_at      DATETIME,
+    deleted_at          DATETIME,
+
+    CONSTRAINT pk_provisions PRIMARY KEY (id),
+    CONSTRAINT fk_provisions_user FOREIGN KEY (user_id) REFERENCES users(id)
+);
+
 INSERT INTO subscription_plans (id, name, price, billing_period, features, is_active)
 VALUES
     (

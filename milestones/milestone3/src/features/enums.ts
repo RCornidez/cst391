@@ -9,3 +9,11 @@ export enum CardType {
     AMEX = "AMEX",
     DISCOVER = "DISCOVER",
 }
+
+export enum ProvisionStatus {
+    PENDING = "PENDING",
+    PROVISIONING = "PROVISIONING",
+    ACTIVE = "ACTIVE",
+    FAILED = "FAILED",
+    DELETED = "DELETED",
+}
