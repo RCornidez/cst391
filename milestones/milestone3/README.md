@@ -5,6 +5,9 @@
 # Introduction
 In this milestone assignment we are building out our previously designed API endpoints using Express and TypeScript.
 
+# Screen Recording
+- [Youtube Link](https://youtu.be/zItVOPLOUeE)
+
 # Powerpoint Presentation
 - [File Download](./CST391-Milestone3-Benchmark.pptx)
 - [Online Link](https://mygcuedu6961-my.sharepoint.com/:p:/g/personal/rcornidez_my_gcu_edu/IQCIsSxYovflQrZO5Ipt6I5AAWtVBEOaXOfo5nz0koXlYAE?e=Cb01HB)
