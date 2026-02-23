@@ -8,6 +8,7 @@ dotenv.config()
 
 import userRouter from "./features/users/users.routes";
 import apiKeysRouter from "./features/api-keys/api-keys.routes";
+import billingInfoRouter from "./features/billing-info/billing-info.routes";
 
 import logger from "./middleware/logger.middleware";
 
@@ -29,7 +30,7 @@ app.get('/', (req: Request, res: Response) => {
     res.send('MobileForge API');
 });
 
-app.use('/', [userRouter, apiKeysRouter]);
+app.use('/', [userRouter, apiKeysRouter, billingInfoRouter]);
 
 app.listen(port, () => {
     console.log(`Example app listening at http://localhost:${port}`)

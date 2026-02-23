@@ -34,6 +34,19 @@ CREATE TABLE api_keys (
     CONSTRAINT fk_api_keys_user FOREIGN KEY (user_id) REFERENCES users(id)
 );
 
+CREATE TABLE billing_info (
+    id                      CHAR(36)        NOT NULL    DEFAULT (UUID()),
+    user_id                 CHAR(36)        NOT NULL,
+    payment_provider_token  VARCHAR(255)    NOT NULL,
+    card_last_four          CHAR(4)         NOT NULL,
+    card_type               ENUM('VISA', 'MASTERCARD', 'AMEX', 'DISCOVER') NOT NULL,
+    created_at              DATETIME        NOT NULL    DEFAULT CURRENT_TIMESTAMP,
+    updated_at              DATETIME        NOT NULL    DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+
+    CONSTRAINT pk_billing_info PRIMARY KEY (id),
+    CONSTRAINT fk_billing_info_user FOREIGN KEY (user_id) REFERENCES users(id)
+);
+
 INSERT INTO subscription_plans (id, name, price, billing_period, features, is_active)
 VALUES
     (
