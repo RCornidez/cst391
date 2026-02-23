@@ -73,9 +73,25 @@ CREATE TABLE user_subscriptions (
     end_date        DATETIME,
     created_at      DATETIME        NOT NULL    DEFAULT CURRENT_TIMESTAMP,
 
-    CONSTRAINT pk_user_subscriptions PRIMARY KEY (id),
+    CONSTRAINT 
+     PRIMARY KEY (id),
     CONSTRAINT fk_user_subscriptions_user FOREIGN KEY (user_id) REFERENCES users(id),
     CONSTRAINT fk_user_subscriptions_plan FOREIGN KEY (plan_id) REFERENCES subscription_plans(id)
+);
+
+CREATE TABLE bills (
+    id                      CHAR(36)        NOT NULL    DEFAULT (UUID()),
+    user_id                 CHAR(36)        NOT NULL,
+    user_subscription_id    CHAR(36)        NOT NULL,
+    amount                  DECIMAL(10, 2)  NOT NULL,
+    status                  ENUM('PENDING', 'PAID', 'FAILED', 'CANCELLED') NOT NULL DEFAULT 'PENDING',
+    due_date                DATETIME        NOT NULL,
+    paid_date               DATETIME,
+    created_at              DATETIME        NOT NULL    DEFAULT CURRENT_TIMESTAMP,
+
+    CONSTRAINT pk_bills PRIMARY KEY (id),
+    CONSTRAINT fk_bills_user FOREIGN KEY (user_id) REFERENCES users(id),
+    CONSTRAINT fk_bills_subscription FOREIGN KEY (user_subscription_id) REFERENCES user_subscriptions(id)
 );
 
 INSERT INTO subscription_plans (id, name, price, billing_period, features, is_active)

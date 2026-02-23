@@ -11,6 +11,7 @@ import apiKeysRouter from "./features/api-keys/api-keys.routes";
 import billingInfoRouter from "./features/billing-info/billing-info.routes";
 import provisionsRouter from "./features/provisions/provisions.routes";
 import userSubscriptionsRouter from "./features/user-subscriptions/user-subscriptions.routes";
+import billsRouter from "./features/bills/bills.routes";
 
 import logger from "./middleware/logger.middleware";
 
@@ -37,7 +38,8 @@ app.use('/', [
     apiKeysRouter, 
     billingInfoRouter, 
     provisionsRouter,
-    userSubscriptionsRouter
+    userSubscriptionsRouter,
+    billsRouter
 ]);
 
 app.listen(port, () => {

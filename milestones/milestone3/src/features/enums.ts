@@ -24,3 +24,10 @@ export enum SubscriptionStatus {
     EXPIRED = "EXPIRED",
     PAST_DUE = "PAST_DUE",
 }
+
+export enum BillStatus {
+    PENDING = "PENDING",
+    PAID = "PAID",
+    FAILED = "FAILED",
+    CANCELLED = "CANCELLED",
+}
