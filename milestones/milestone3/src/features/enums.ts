@@ -17,3 +17,10 @@ export enum ProvisionStatus {
     FAILED = "FAILED",
     DELETED = "DELETED",
 }
+
+export enum SubscriptionStatus {
+    ACTIVE = "ACTIVE",
+    CANCELLED = "CANCELLED",
+    EXPIRED = "EXPIRED",
+    PAST_DUE = "PAST_DUE",
+}

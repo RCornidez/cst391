@@ -10,6 +10,7 @@ import userRouter from "./features/users/users.routes";
 import apiKeysRouter from "./features/api-keys/api-keys.routes";
 import billingInfoRouter from "./features/billing-info/billing-info.routes";
 import provisionsRouter from "./features/provisions/provisions.routes";
+import userSubscriptionsRouter from "./features/user-subscriptions/user-subscriptions.routes";
 
 import logger from "./middleware/logger.middleware";
 
@@ -31,7 +32,13 @@ app.get('/', (req: Request, res: Response) => {
     res.send('MobileForge API');
 });
 
-app.use('/', [userRouter, apiKeysRouter, billingInfoRouter, provisionsRouter]);
+app.use('/', [
+    userRouter, 
+    apiKeysRouter, 
+    billingInfoRouter, 
+    provisionsRouter,
+    userSubscriptionsRouter
+]);
 
 app.listen(port, () => {
     console.log(`Example app listening at http://localhost:${port}`)

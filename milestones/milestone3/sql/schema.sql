@@ -64,6 +64,20 @@ CREATE TABLE provisions (
     CONSTRAINT fk_provisions_user FOREIGN KEY (user_id) REFERENCES users(id)
 );
 
+CREATE TABLE user_subscriptions (
+    id              CHAR(36)        NOT NULL    DEFAULT (UUID()),
+    user_id         CHAR(36)        NOT NULL,
+    plan_id         CHAR(36)        NOT NULL,
+    status          ENUM('ACTIVE', 'CANCELLED', 'EXPIRED', 'PAST_DUE') NOT NULL DEFAULT 'ACTIVE',
+    start_date      DATETIME        NOT NULL,
+    end_date        DATETIME,
+    created_at      DATETIME        NOT NULL    DEFAULT CURRENT_TIMESTAMP,
+
+    CONSTRAINT pk_user_subscriptions PRIMARY KEY (id),
+    CONSTRAINT fk_user_subscriptions_user FOREIGN KEY (user_id) REFERENCES users(id),
+    CONSTRAINT fk_user_subscriptions_plan FOREIGN KEY (plan_id) REFERENCES subscription_plans(id)
+);
+
 INSERT INTO subscription_plans (id, name, price, billing_period, features, is_active)
 VALUES
     (
