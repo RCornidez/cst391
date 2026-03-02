@@ -1,0 +1,20 @@
+<div class="list-group">
+    @if (selectedAlbum == null) {
+        @for (album of albums; track album.title) {
+            <button class="list-group-item" (click)="onSelectAlbum(album)">
+                <table align="center">
+                    <tr>
+                        <td width="20%">
+                            <img src="{{ album.image }}" width="50px" height="50px"/>
+                        </td>
+                        <td> {{ album.title }} from {{ album.year }}</td>
+                    </tr>
+                </table>
+            </button>
+        }
+    }
+</div>
+
+@if (selectedAlbum) {
+    <app-display-album [album]="selectedAlbum"></app-display-album>
+}

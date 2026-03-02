@@ -1,0 +1,47 @@
+<div align="center">
+    <div class="card mb-6" style="max-width: 500px;">
+        <div class="row no-gutters">
+            <div class="col-mb-4">
+                <div style="height: 150px; width: 150px; overflow: hidden;">
+                    <img src="{{ album!.image }}" class="card-img" alt="{{ album!.title }}" width="150px" height="150px">
+                </div>
+            </div>
+            <div class="col-md-8">
+                <div class="card-body">
+                    <h5 class="card-title">{{ album!.title }}</h5>
+                    <p class="card-text">{{ album!.description }}</p>
+                    <p class="card-text"><small class="text-muted">{{ album!.year }}</small></p>
+                </div>
+                <table>
+                    <tr>
+                        <td width="50px" align="center">
+                            <a href="#" data-bs-toggle="collapse" data-bs-target="#collapseTracks" aria-expanded="false" aria-controls="collapseTracks">
+                                <i class="fa fa-list"></i>
+                            </a>
+                        </td>
+                        <td width="50px" align="center">
+                            <a [routerLink]="['/edit', album!.albumId]">
+                                <i class="fa fa-edit"></i>
+                            </a>
+                        </td>
+                        <td width="50px" align="center">
+                            <a [routerLink]="['/delete', album!.albumId]">
+                                <i class="fa fa-trash"></i>
+                            </a>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="collapse" id="collapseTracks" style="margin-left:50px; margin-right: 50px;">
+    <div class="card card-body">
+        <ul class="list-group-flush">
+            @for (track of album!.tracks; track track.number) {
+                <li class="list-group-item">{{ track.number }}. {{ track.title }}</li>
+            }
+        </ul>
+    </div>
+</div>

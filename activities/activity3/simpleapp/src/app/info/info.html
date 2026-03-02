@@ -1,0 +1,21 @@
+
+<p>Welcome {{name}}, please place your Order</p>
+<br/>
+<form (ngSubmit)="onSubmit()" #infoForm="ngForm">
+    <div class="form-group">
+        <label for="quantity">Quantity </label>
+        <input type="text" class="form-control" id="quantity" required [(ngModel)]="quantity" name="quantity">
+    </div>
+
+    <div class="form-group">
+        <label for="products">Star Wars Movies</label>
+        <select class="form-control" id="products" required [(ngModel)]="selectedProduct" name="products" #selected="ngModel">
+            @for (product of products; track product) {
+                <option [value]="product">{{product}}</option>
+            }        
+        </select>
+    </div>
+
+    <button type="submit" class="btn btn-success" >Buy</button>
+    <button type="button" class="btn btn-default" (click)="newInfo()">Reset</button>
+</form>
