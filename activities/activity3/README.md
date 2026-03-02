@@ -45,7 +45,12 @@ This activity will have us step through the installation, creation, and serving 
 
 3. `[(ngModel)]` is Angulars two-way data binding syntax. It is used to keep the component and html template in sync. So when the user updates the html template, the underlying TypeScript business logic is updated properly.
 
-# Part 2
+# Part 2*
+
+## a. Initial hompage
+![Initial Page](screenshots/initial.png)
+
+*This screenshot shows the initial home page route.*
 
 
 ## b. GCU homepage
