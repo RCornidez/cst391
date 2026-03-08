@@ -1,0 +1,30 @@
+{
+  "name": "musicapi",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.ts",
+  "scripts": {
+    "start:watch": "nodemon ./src/app.ts",
+    "start": "npx ts-node ./src/app.ts",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.6",
+    "dotenv": "^17.2.4",
+    "expres": "^0.0.5",
+    "express": "^5.2.1",
+    "helmet": "^8.1.0",
+    "mysql": "^2.18.1",
+    "uuid": "^13.0.0"
+  },
+  "devDependencies": {
+    "@types/cors": "^2.8.19",
+    "@types/dotenv": "^6.1.1",
+    "@types/express": "^5.0.6",
+    "@types/mysql": "^2.15.27",
+    "@types/uuid": "^10.0.0",
+    "typescript": "^5.9.3"
+  }
+}
