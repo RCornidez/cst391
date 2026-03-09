@@ -1,0 +1,8 @@
+<div class="snackbar-stack">
+  @for (msg of snackbar.messages(); track msg.id) {
+    <div class="snackbar {{ msg.type }}">
+      <span>{{ msg.text }}</span>
+      <button (click)="snackbar.dismiss(msg.id)">✕</button>
+    </div>
+  }
+</div>

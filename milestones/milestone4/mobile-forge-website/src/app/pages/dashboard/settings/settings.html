@@ -1,0 +1,276 @@
+<section id="keys">
+  <h2>keys</h2>
+  <p>Add your GitHub and Digital Ocean API keys to enable server provisioning and automatic repository deployment.</p>
+
+  <div class="table-placeholder keys-table">
+    <div class="table-row header">
+      <span>name</span>
+      <span>provider</span>
+      <span>created</span>
+      <span>actions</span>
+    </div>
+
+    @for (key of keys; track key.id) {
+      <div class="table-row">
+        @if (renamingId === key.id) {
+          <span><input class="rename-input" [(ngModel)]="renameValue" (keydown.enter)="onRenameKey(key.id)" (keydown.escape)="cancelRename()" /></span>
+        } @else {
+          <span>{{ key.keyName }}</span>
+        }
+        <span><span class="badge" [class.github]="key.providerType === 'GITHUB'" [class.info]="key.providerType === 'DIGITAL_OCEAN'">{{ key.providerType }}</span></span>
+        <span>{{ formatDate(key.createdAt) }}</span>
+        <span class="row-actions">
+          @if (renamingId === key.id) {
+            <button class="btn-action" (click)="onRenameKey(key.id)">save</button>
+            <button class="btn-action muted" (click)="cancelRename()">cancel</button>
+          } @else {
+            <button class="btn-action" (click)="startRename(key)">rename</button>
+            <button class="btn-action danger" (click)="onDeleteKey(key.id)">delete</button>
+          }
+        </span>
+      </div>
+    }
+
+    @if (keys.length === 0) {
+      <div class="table-row empty">
+        <span>no keys found</span>
+      </div>
+    }
+  </div>
+
+  @if (showCreateForm) {
+    <div class="create-form">
+      <div class="form-field">
+        <label class="field-label">provider</label>
+        <div class="select-wrapper">
+          <select autocomplete="off" [(ngModel)]="createForm.providerType">
+            <option value="GITHUB">GITHUB</option>
+            <option value="DIGITAL_OCEAN">DIGITAL_OCEAN</option>
+          </select>
+          <i class="ph ph-caret-down"></i>
+        </div>
+      </div>
+      <div class="form-field">
+        <label class="field-label">key_name</label>
+        <input type="text" placeholder="e.g. my_github_key" autocomplete="off" [(ngModel)]="createForm.keyName" />
+      </div>
+      <div class="form-field">
+        <label class="field-label">api_key</label>
+        <input type="text" placeholder="paste your API key here" autocomplete="off" [(ngModel)]="createForm.apiKey" />
+      </div>
+      <div class="form-actions">
+        <button class="btn-dark" (click)="onCreateKey()">
+          <i class="ph ph-check"></i>
+          save_key
+        </button>
+        <button class="btn-outline" (click)="toggleCreateForm()">cancel</button>
+      </div>
+    </div>
+  }
+
+  <button class="btn-dark" (click)="toggleCreateForm()">
+    <i class="ph ph-plus"></i>
+    new_key
+  </button>
+</section>
+
+<section id="account">
+  <h2>account</h2>
+  <p>Manage your subscription plan.</p>
+
+  @if (subscription && currentPlan) {
+    <div class="info-block">
+      <div class="info-row">
+        <span class="info-label">plan</span>
+        <span>{{ currentPlan.name }}
+          <span class="badge" [class.active]="subscription.status === 'ACTIVE'" [class.inactive]="subscription.status !== 'ACTIVE'">
+            {{ subscription.status.toLowerCase() }}
+          </span>
+        </span>
+      </div>
+      <div class="info-row">
+        <span class="info-label">price</span>
+        <span>${{ currentPlan.price.toFixed(2) }} / {{ currentPlan.billingPeriod }}</span>
+      </div>
+      <div class="info-row">
+        <span class="info-label">member_since</span>
+        <span>{{ formatDate(subscription.startDate) }}</span>
+      </div>
+    </div>
+
+    @if (showPlanSelector) {
+      <div class="plan-selector">
+        <p class="field-label" style="margin-bottom: 0.75rem;">select a plan</p>
+        <div class="plan-cards">
+          @for (plan of allPlans; track plan.id) {
+            <div class="plan-card" [class.selected]="selectedPlanId === plan.id" (click)="selectedPlanId = plan.id">
+              <span class="plan-name">{{ plan.name }}</span>
+              <span class="plan-price">${{ plan.price.toFixed(2) }}<span class="plan-period"> / {{ plan.billingPeriod }}</span></span>
+              <button class="plan-features-toggle" (click)="$event.stopPropagation(); expandedPlanId = expandedPlanId === plan.id ? null : plan.id">
+                <i [class]="expandedPlanId === plan.id ? 'ph ph-caret-up' : 'ph ph-caret-down'"></i>
+                features
+              </button>
+              @if (expandedPlanId === plan.id) {
+                <ul class="plan-features-list">
+                  @for (feature of plan.features; track feature.title) {
+                    <li>
+                      <i [class]="feature.locked ? 'ph ph-x feature-icon restricted' : 'ph ph-check feature-icon available'"></i>
+                      <span class="feature-title">{{ feature.title }}</span> — {{ feature.description }}
+                    </li>
+                  }
+                </ul>
+              }
+            </div>
+          }
+        </div>
+        <div class="form-actions" style="margin-top: 0.75rem;">
+          <button class="btn-dark" (click)="onChangePlan()">confirm_change</button>
+          <button class="btn-outline" (click)="togglePlanSelector()">cancel</button>
+        </div>
+      </div>
+    }
+
+    <div class="btn-row">
+      <button class="btn-outline" (click)="togglePlanSelector()">change_plan</button>
+      @if (subscription.status === 'ACTIVE') {
+        <button class="btn-outline danger" (click)="onCancelSubscription()">cancel_subscription</button>
+      }
+    </div>
+  } @else {
+    <div class="empty-subscription">
+      <p class="empty-sub-title">no active subscription</p>
+      <p class="empty-sub-sub">select a plan below to get started</p>
+      <div class="plan-cards" style="margin-top: 1rem;">
+        @for (plan of allPlans; track plan.id) {
+          <div class="plan-card" [class.selected]="selectedPlanId === plan.id" (click)="selectedPlanId = plan.id">
+            <span class="plan-name">{{ plan.name }}</span>
+            <span class="plan-price">${{ plan.price.toFixed(2) }}<span class="plan-period"> / {{ plan.billingPeriod }}</span></span>
+            <button class="plan-features-toggle" (click)="$event.stopPropagation(); expandedPlanId = expandedPlanId === plan.id ? null : plan.id">
+              <i [class]="expandedPlanId === plan.id ? 'ph ph-caret-up' : 'ph ph-caret-down'"></i>
+              features
+            </button>
+            @if (expandedPlanId === plan.id) {
+              <ul class="plan-features-list">
+                @for (feature of plan.features; track feature.title) {
+                  <li>
+                    <i [class]="feature.locked ? 'ph ph-x feature-icon restricted' : 'ph ph-check feature-icon available'"></i>
+                    <span class="feature-title">{{ feature.title }}</span> — {{ feature.description }}
+                  </li>
+                }
+              </ul>
+            }
+          </div>
+        }
+      </div>
+      <button class="btn-dark" style="margin-top: 1rem;" (click)="onSubscribe()">
+        <i class="ph ph-check"></i>
+        subscribe
+      </button>
+    </div>
+  }
+</section>
+
+<section id="billing">
+  <h2>billing</h2>
+  <p>Manage your payment method on file.</p>
+
+  @if (billingInfo) {
+    <div class="info-block">
+      <div class="info-row">
+        <span class="info-label">card_type</span>
+        <span>{{ billingInfo.cardType }}</span>
+      </div>
+      <div class="info-row">
+        <span class="info-label">card_number</span>
+        <span class="card-masked">•••• •••• •••• {{ billingInfo.cardLastFour }}</span>
+      </div>
+    </div>
+
+    @if (showBillingForm) {
+      <ng-container *ngTemplateOutlet="billingFormTpl" />
+    }
+
+    <div class="btn-row">
+      <button class="btn-outline" (click)="openBillingForm('update')">update_card</button>
+      <button class="btn-outline danger" (click)="onDeleteBillingInfo()">remove_card</button>
+    </div>
+  } @else {
+    <div class="info-block">
+      <div class="info-row">
+        <span class="info-label">card_on_file</span>
+        <span class="muted-text">no payment method on file</span>
+      </div>
+    </div>
+
+    @if (showBillingForm) {
+      <ng-container *ngTemplateOutlet="billingFormTpl" />
+    }
+
+    <button class="btn-dark" (click)="openBillingForm('create')">
+      <i class="ph ph-plus"></i>
+      add_payment_method
+    </button>
+  }
+</section>
+
+<ng-template #billingFormTpl>
+  <div class="create-form billing-form">
+    <div class="billing-form-row">
+      <div class="form-field">
+        <label class="field-label">name_on_card</label>
+        <input type="text" autocomplete="off" [(ngModel)]="billingForm.nameOnCard" placeholder="Jane Doe" />
+      </div>
+      <div class="form-field">
+        <label class="field-label">card_type</label>
+        <div class="select-wrapper">
+          <select autocomplete="off" [(ngModel)]="billingForm.cardType">
+            <option value="VISA">VISA</option>
+            <option value="MASTERCARD">MASTERCARD</option>
+            <option value="AMEX">AMEX</option>
+            <option value="DISCOVER">DISCOVER</option>
+          </select>
+          <i class="ph ph-caret-down"></i>
+        </div>
+      </div>
+    </div>
+    <div class="form-field">
+      <label class="field-label">card_number</label>
+      <input type="text" autocomplete="off" [(ngModel)]="billingForm.cardNumber" placeholder="1234 5678 9012 3456" maxlength="16" />
+    </div>
+    <div class="billing-form-row">
+      <div class="form-field">
+        <label class="field-label">exp_month</label>
+        <input type="text" autocomplete="off" [(ngModel)]="billingForm.expMonth" placeholder="MM" maxlength="2" />
+      </div>
+      <div class="form-field">
+        <label class="field-label">exp_year</label>
+        <input type="text" autocomplete="off" [(ngModel)]="billingForm.expYear" placeholder="YYYY" maxlength="4" />
+      </div>
+      <div class="form-field">
+        <label class="field-label">cvv</label>
+        <input type="text" autocomplete="off" [(ngModel)]="billingForm.cvv" placeholder="•••" maxlength="4" />
+      </div>
+    </div>
+    <div class="form-field">
+      <label class="field-label">address</label>
+      <input type="text" autocomplete="off" [(ngModel)]="billingForm.address" placeholder="123 Main St" />
+    </div>
+    <div class="billing-form-row">
+      <div class="form-field">
+        <label class="field-label">state</label>
+        <input type="text" autocomplete="off" [(ngModel)]="billingForm.state" placeholder="AZ" maxlength="2" />
+      </div>
+      <div class="form-field">
+        <label class="field-label">zip</label>
+        <input type="text" autocomplete="off" [(ngModel)]="billingForm.zip" placeholder="85001" maxlength="5" />
+      </div>
+    </div>
+    <div class="form-actions">
+      <button class="btn-dark" (click)="onSaveBillingInfo()">
+        <i class="ph ph-check"></i>
+        {{ billingFormMode === 'create' ? 'save_card' : 'update_card' }}
+      </button>
+      <button class="btn-outline" (click)="closeBillingForm()">cancel</button>
+    </div>
+  </div>
+</ng-template>

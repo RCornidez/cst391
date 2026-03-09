@@ -1,0 +1,125 @@
+<section id="getting_started">
+  <h2>getting_started</h2>
+  <p>Download the Mobile Forge app, then choose a path below to connect your first server.</p>
+
+  <div class="toggle-group">
+    <button
+      class="toggle-btn"
+      [class.active]="gettingStartedMode === 'provision'"
+      (click)="gettingStartedMode = 'provision'">
+      <i class="ph ph-cloud-arrow-up"></i>
+      provision a server
+    </button>
+    <button
+      class="toggle-btn"
+      [class.active]="gettingStartedMode === 'connect'"
+      (click)="gettingStartedMode = 'connect'">
+      <i class="ph ph-plugs-connected"></i>
+      connect existing server
+    </button>
+  </div>
+
+  @if (gettingStartedMode === 'provision') {
+    <div class="steps">
+      <div class="steps-note">
+        <i class="ph ph-info"></i>
+        <span>Requires an elevated plan — The Apprentice or The Blacksmith. Add your <a routerLink="/dashboard/settings" fragment="keys">API keys</a> before starting.</span>
+      </div>
+      <ol class="step-list">
+        <li>
+          <div class="step-body">
+            <span class="step-label">Add provider keys</span>
+            <span class="step-detail">In the dashboard, go to <strong>settings &rsaquo; keys</strong> and add a DigitalOcean key. Optionally add a GitHub key to clone a repository during setup.</span>
+          </div>
+        </li>
+        <li>
+          <div class="step-body">
+            <span class="step-label">Open the app and tap Provision Server</span>
+            <span class="step-detail">Select the <strong>provision server</strong> button on the home screen of the Mobile Forge app.</span>
+          </div>
+        </li>
+        <li>
+          <div class="step-body">
+            <span class="step-label">Select your keys</span>
+            <span class="step-detail">Choose the DigitalOcean key you added, and optionally a GitHub key.</span>
+          </div>
+        </li>
+        <li>
+          <div class="step-body">
+            <span class="step-label">Configure the server</span>
+            <span class="step-detail">Pick a server size and access method. Optionally select a GitHub repository to clone into your home directory.</span>
+          </div>
+        </li>
+        <li>
+          <div class="step-body">
+            <span class="step-label">Provision</span>
+            <span class="step-detail">Tap <strong>provision</strong> and wait for the server to spin up.</span>
+          </div>
+        </li>
+        <li>
+          <div class="step-body">
+            <span class="step-label">Connect</span>
+            <span class="step-detail">Your new server will appear on the home screen. Tap <strong>connect</strong> to open a shell and access the sftp file explorer</span>
+          </div>
+        </li>
+      </ol>
+    </div>
+  }
+
+  @if (gettingStartedMode === 'connect') {
+    <div class="steps">
+      <div class="steps-note">
+        <i class="ph ph-info"></i>
+        <span>You will need a PC or web console to complete the initial server setup before connecting from the app.</span>
+      </div>
+      <ol class="step-list">
+        <li>
+          <div class="step-body">
+            <span class="step-label">Create a user with SSH password auth</span>
+            <span class="step-detail">On your server (from a PC or web console), create a user and temporarily enable SSH password authentication for that user only.</span>
+          </div>
+        </li>
+        <li>
+          <div class="step-body">
+            <span class="step-label">Tap Connect to a Server in the app</span>
+            <span class="step-detail">Open the Mobile Forge app and select <strong>connect to a server</strong> on the home screen.</span>
+          </div>
+        </li>
+        <li>
+          <div class="step-body">
+            <span class="step-label">Enter host details</span>
+            <span class="step-detail">Input the server's IP address, port (default: 22), set auth type to <strong>basic</strong>, and enter your username and password.</span>
+          </div>
+        </li>
+        <li>
+          <div class="step-body">
+            <span class="step-label">Save the server</span>
+            <span class="step-detail">Save the connection. It will appear on your home screen.</span>
+          </div>
+        </li>
+        <li>
+          <div class="step-body">
+            <span class="step-label">Connect and generate an SSH key</span>
+            <span class="step-detail">Tap <strong>connect</strong> to verify access. Then exit and from the home screen add a new server connection, set auth type to <strong>key.</strong>, and tap <strong>generate key</strong>. Copy the public key.</span>
+          </div>
+        </li>
+        <li>
+          <div class="step-body">
+            <span class="step-label">Harden SSH access</span>
+            <span class="step-detail">From your basic-auth connection, add the copied public key to the user's <code>~/.ssh/authorized_keys</code> file. Then update your SSH service config to restrict password auth for that user and restart the service. Configure UFW to allow only SSH.</span>
+          </div>
+        </li>
+      </ol>
+    </div>
+  }
+</section>
+
+<section id="how_to_guides">
+  <h2>how_to_guides</h2>
+  <p>Step-by-step guides to help you get the most out of mobile_forge.</p>
+  <div class="wip">
+    <i class="ph ph-hammer wip-icon"></i>
+    <span class="wip-label">under construction</span>
+    <span class="wip-detail">Guides are on the way. Check back soon.</span>
+  </div>
+</section>

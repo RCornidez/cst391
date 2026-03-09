@@ -1,0 +1,62 @@
+<nav id="nav">
+  <div class="nav-inner">
+    <span class="brand">mobile_forge</span>
+    <div class="nav-links">
+      <a href="#pricing">pricing</a>
+      <a routerLink="/login">sign_in</a>
+    </div>
+  </div>
+</nav>
+
+<section id="call-to-action">
+  <div class="cta-inner">
+    <img src="icons-art.svg" alt="mobile forge icons" class="cta-image" />
+    <div class="cta-text">
+      <h1>Your <app-typewriter [words]="ctaWords" /></h1>
+      <p>Desks are optional. Language agnostic.<br />Wanderlust compatible. Skill required.<br />Location irrelevant.</p>
+      <div class="cta-actions">
+        <a href="#">learn_more</a>
+        <a routerLink="/login" class="btn-primary">get_started</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="pricing">
+  <div class="pricing-inner">
+    <div class="pricing-cards">
+      @for (plan of plans(); track $index) {
+        <div class="plan-card">
+          <div class="plan-header">
+            <h3>{{ plan.name }}</h3>
+            <div class="plan-price">
+              @if (isAnnual(plan)) {
+                <span class="price">${{ monthlyPrice(plan) }}</span>
+                <span class="period">/ month <span class="billed-note">(billed annually)</span></span>
+              } @else {
+                <span class="price">${{ plan.price }}</span>
+                <span class="period">/ {{ plan.billingPeriod }}</span>
+              }
+            </div>
+          </div>
+          <ul class="plan-features">
+            @for (feature of plan.features; track feature.title) {
+              <li [class.locked]="feature.locked">
+                @if (feature.locked) {
+                  <i class="ph ph-lock-key feature-icon locked-icon"></i>
+                } @else {
+                  <i class="ph ph-check-circle feature-icon check-icon"></i>
+                }
+                <div class="feature-text">
+                  <span class="feature-title">{{ feature.title }}</span>
+                  <span class="feature-desc">{{ feature.description }}</span>
+                </div>
+              </li>
+            }
+          </ul>
+          <a routerLink="/login" class="plan-cta">get_started</a>
+        </div>
+      }
+    </div>
+  </div>
+</section>

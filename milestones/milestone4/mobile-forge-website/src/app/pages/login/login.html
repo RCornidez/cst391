@@ -1,0 +1,43 @@
+<div class="page">
+  <h1 class="brand">mobile_forge</h1>
+
+  <div class="card">
+    <div class="toggle">
+      <button type="button" [class.active]="!isSignup" (click)="isSignup = false">sign_in</button>
+      <button type="button" [class.active]="isSignup" (click)="isSignup = true">sign_up</button>
+    </div>
+
+    <h2>{{ isSignup ? 'Create an account' : 'Sign in to your account' }}</h2>
+
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+      <div class="field">
+        <label for="email">email_address</label>
+        <input id="email" type="email" formControlName="email" />
+      </div>
+
+      <div class="field">
+        <div class="field-header">
+          <label for="password">password</label>
+          @if (!isSignup) {
+            <a href="#">forgot_password?</a>
+          }
+        </div>
+        <input id="password" type="password" formControlName="password" />
+      </div>
+
+      @if (isSignup) {
+        <div class="field">
+          <label for="confirmPassword">confirm_password</label>
+          <input id="confirmPassword" type="password" formControlName="confirmPassword" />
+          @if (passwordMismatch) {
+            <span class="error">passwords do not match</span>
+          }
+        </div>
+      }
+
+      <button type="submit" class="submit">
+        {{ isSignup ? 'sign_up' : 'sign_in' }}
+      </button>
+    </form>
+  </div>
+</div>

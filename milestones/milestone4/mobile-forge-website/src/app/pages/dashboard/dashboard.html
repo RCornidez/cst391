@@ -1,0 +1,52 @@
+<div class="dashboard">
+
+  <div class="mobile-topbar">
+    <span class="brand">mobile_forge</span>
+    <button class="nav-toggle" (click)="sidebarOpen = !sidebarOpen">
+      <i [class]="sidebarOpen ? 'ph ph-x' : 'ph ph-list'"></i>
+    </button>
+  </div>
+
+  <div class="sidebar-backdrop" [class.visible]="sidebarOpen" (click)="sidebarOpen = false"></div>
+
+  <aside class="sidebar" [class.sidebar-open]="sidebarOpen">
+    <span class="brand">mobile_forge</span>
+    <nav class="sidebar-nav">
+      <span class="nav-section-label">resources</span>
+      <a routerLink="resources" fragment="getting_started" [class.nav-item-active]="activeFragment === 'getting_started'" class="nav-item" (click)="sidebarOpen = false">
+        <i class="ph ph-rocket-launch"></i>
+        getting_started
+      </a>
+      <a routerLink="resources" fragment="how_to_guides" [class.nav-item-active]="activeFragment === 'how_to_guides'" class="nav-item" (click)="sidebarOpen = false">
+        <i class="ph ph-book-open"></i>
+        how_to_guides
+      </a>
+      <a routerLink="features" routerLinkActive="nav-item-active" class="nav-item" (click)="sidebarOpen = false">
+        <i class="ph ph-lightbulb"></i>
+        feature_voting
+      </a>
+      <span class="nav-section-label">settings</span>
+      <a routerLink="settings" fragment="keys" [class.nav-item-active]="activeFragment === 'keys'" class="nav-item" (click)="sidebarOpen = false">
+        <i class="ph ph-key"></i>
+        keys
+      </a>
+      <a routerLink="settings" fragment="account" [class.nav-item-active]="activeFragment === 'account'" class="nav-item" (click)="sidebarOpen = false">
+        <i class="ph ph-user-circle"></i>
+        account
+      </a>
+      <a routerLink="settings" fragment="billing" [class.nav-item-active]="activeFragment === 'billing'" class="nav-item" (click)="sidebarOpen = false">
+        <i class="ph ph-credit-card"></i>
+        billing
+      </a>
+    </nav>
+    <button class="logout-btn" (click)="logout()">
+      <i class="ph ph-sign-out"></i>
+      logout
+    </button>
+  </aside>
+
+  <main class="content">
+    <router-outlet />
+  </main>
+
+</div>

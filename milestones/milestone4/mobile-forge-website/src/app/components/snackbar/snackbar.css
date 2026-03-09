@@ -1,0 +1,37 @@
+.snackbar-stack {
+  position: fixed;
+  bottom: 1.5rem;
+  left: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  z-index: 1000;
+}
+
+.snackbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.65rem 1rem;
+  border-radius: 6px;
+  font-family: monospace;
+  font-size: 0.875rem;
+  color: white;
+  min-width: 240px;
+  max-width: 360px;
+}
+
+.snackbar.success { background: #276749; }
+.snackbar.info    { background: #2b6cb0; }
+.snackbar.error   { background: #c53030; }
+
+.snackbar button {
+  background: none;
+  border: none;
+  color: white;
+  cursor: pointer;
+  font-size: 0.8rem;
+  padding: 0;
+  line-height: 1;
+}
