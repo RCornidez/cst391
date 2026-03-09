@@ -9,14 +9,14 @@ In this activity assignment we are learning how to create a react application as
 ## Music Application
 *In this screenshot you can see the three card components. The image urls from wikipedia are blocked likely due to cors restrictions.*
 1. stateless version
-![Music Albums Screenshot](/screenshots/music.png)
+![Music Albums Screenshot](screenshots/music.png)
 
 2. stateful version
-![Music Albums Screenshot](/screenshots/music2.png)
+![Music Albums Screenshot](screenshots/music2.png)
 
 ## State Change Application
 *In this screenshot you can see the three counter components. They each have their individual state.*
-![State Change Screenshot](/screenshots/statechange.png)
+![State Change Screenshot](screenshots/statechange.png)
 
 
 # Conclusion
