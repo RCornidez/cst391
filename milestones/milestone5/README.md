@@ -6,7 +6,7 @@
 In this milestone assignment we are building out our React Web Application based on our wireframes.
 
 # Screen Recording
-- [Youtube Link]()
+- [Youtube Link](https://youtu.be/7-FUs7n_P90)
 
 # Powerpoint Presentation
 - [File Download](./Presentation.pptx)
