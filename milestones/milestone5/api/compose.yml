@@ -1,0 +1,19 @@
+services:
+  mysql:
+    image: mysql:8.0
+    container_name: mobile-forge-db
+    restart: unless-stopped
+    env_file:
+      - ./.env
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MY_SQL_DB_PASSWORD}
+      MYSQL_DATABASE: ${MY_SQL_DB_DATABASE}
+    command: --default-authentication-plugin=mysql_native_password
+    ports:
+      - "${MY_SQL_DB_PORT}:3306"
+    volumes:
+      - mobileforge_data:/var/lib/mysql
+      - ./sql/schema.sql:/docker-entrypoint-initdb.d/01-schema.sql
+
+volumes:
+  mobileforge_data:
